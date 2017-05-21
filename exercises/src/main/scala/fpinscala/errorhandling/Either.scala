@@ -32,7 +32,7 @@ case class Right[+A](get: A) extends Either[Nothing,A]
 
 object Either {
   def traverse[E,A,B](es: List[A])(f: A => Either[E, B]): Either[E, List[B]] =
-    es.foldRight(Right(Nil: List[B]))((a, b) => f(a).map2(b)((aa, bb) =>  aa :: bb))
+    es.foldRight(Right(Nil: List[B]):Either[E, List[B]])((a, b) => f(a).map2(b)((aa, bb) =>  aa :: bb))
 
   def sequence[E,A](es: List[Either[E,A]]): Either[E,List[A]] =
     traverse(es)(x => x)
